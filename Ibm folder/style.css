@@ -1,0 +1,245 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}    
+
+.bg-image{
+   
+    display: block;
+    height: 100vh;
+    width: 100%;
+}
+#scene_1 {
+    background-image: url('img/background.png');
+    background-size: auto;
+    background-position: center;
+    height: 100vh;
+    display:grid;
+    grid-template-rows: 10% 30% 50% 10%;
+    grid-template-columns: 5vh auto 5vh;
+}
+#scene_1>div{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.sticky-navbar{
+    grid-row: 1/2;
+    display: grid;
+    grid-template-rows: 25% auto 25% ;
+    position:fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 10%);
+    height: 8%;
+     
+}
+#header-main-row{
+    grid-row: 2   3;
+    display: inline-grid;
+    grid-template-columns:  5vh auto auto auto 40% auto 5vh;
+}
+*#header-main-row{
+    color: white;
+    font-style: normal;
+font-weight: 400;
+font-size: 4vh;
+text-align: center;
+}
+#header-main-row>#home{
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+}
+
+a{
+    color: unset;
+}
+#search_bar>input{
+    background: #FFFFFF;
+    border: 3px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 119px;
+    padding: 2vh;
+    padding-left: .5vh;
+    width: 100%;
+    
+}
+
+
+.center-fit{
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    padding: 0;
+}
+.navbar{
+    height: 12%;
+    display: flex;
+    align-items:center;
+    position: relative;
+    text-decoration: none;
+}    
+.menu-header{
+  color: brown;
+  text-decoration: none;
+}
+
+a:link{ 
+    text-decoration: none;
+}
+
+.title{
+    display:inline-grid;
+    grid-row-start: 2;
+    grid-row-end: 3;
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 6vh;
+
+color: #FFFFFF;
+}
+.popular_locations{
+    grid-row-start: 3;
+    grid-row-end: 4;
+display: inline-grid;
+grid-template-rows: 20% 80%;
+grid-template-columns: 100%;
+grid-row-gap: 5%;
+
+
+}
+
+.popular_title{
+
+font-style: normal;
+font-weight: bold;
+font-size: 3vh;
+line-height: 56px;
+
+color: #FFFFFF;
+
+grid-row: 1/2;
+
+}
+
+.popular_container{
+    grid-row: 2/3;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 40%;
+    grid-template-rows: 100%;
+    grid-column-gap: 1vh;
+
+}
+
+.arrow {
+    grid-row: 4/5;
+}
+.popular_container>div>h3{
+    position: relative;
+    color: white;
+    top: 84%;
+    font-size: 3.7vh;
+
+}
+
+.popular_container>div{
+     background-size: cover;
+     background-position: center;
+     border-radius: 3vh;
+     width: 100%;
+     max-height: 80%;
+     
+}
+
+#city{
+  background-image: url(img/Sfcityhall.jpeg);
+}
+#golden{
+    background-image: url(img/111.jpeg);
+}
+
+#Avenue{
+    background-image: url(img/\ Doubtfire.jpeg);
+    
+
+}
+
+.arrow{
+    display: inline-grid;
+    grid-template-rows: 25% auto 25%;
+    grid-template-columns: 25% auto 25%;
+    overflow-y: hidden;
+}
+.arrow>img{
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding-left: 50%;
+    padding-right: 50%;
+padding-top: 0%;
+animation-name: twitch;
+animation-iteration-count: infinite;
+animation-delay: 2s;
+animation-duration: 1s;
+
+}
+@keyframes twitch {
+    0% {padding-top: 0%}
+    50% {padding-top: 1%;}
+    100% {padding-top: 0%;}
+  }
+
+  .scene_2{
+   
+    display:grid;
+    grid-template-rows: 10vh auto 10vh;
+    height: 100vh;
+    grid-template-columns: 5vh auto 10vh 5vh;
+    
+  }
+
+  #table{
+    border-collapse: collapse;
+    grid-row-start: 2 ;
+    grid-row-end: 3;
+    text-align: center;
+    grid-column-start:2;
+    grid-column-end:3 ;
+    font-size: 4vh;
+    font-weight: 400;
+     
+  }
+  #table>*{
+      text-align: center;
+      font-weight: 500;
+
+  }
+
+  .row{
+      background-color: rgba(196, 196, 196, 50%);
+      border-radius: 119px;
+      margin-bottom: 2vh;
+  }
+
+
+    
+  .column{
+
+  }
+  .row{
+      display: grid;
+      grid-template-columns: 33% 33% 33%;
+      grid-template-rows: 100%;
+  }
+  #table_head{
+    background-color: unset;
+    text-align: center; 
+    font-size: 4vh;
+    text-align: center;
+    border-collapse: collapse;
+  }
+

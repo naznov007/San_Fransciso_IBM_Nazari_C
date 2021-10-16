@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="widdiv=device-widdiv, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="suck.js"></script>
+  <title>FIFL</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&display=swap"
+    rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <div class="sticky-navbar">
+    <div class="">
+
+    </div>
+    <div id='header-main-row'>
+      <div id="home">
+        <a href="#header">Home</a>
+      </div>
+
+      <div id="films_list">
+
+        <a href="#header">Films list</a>
+      </div>
+
+
+      <div id="contact_us">
+        <a href="https://google.com">Contact us</a>
+
+      </div>
+
+      <div id="k">
+
+      </div>
+
+      <div id="search_bar">
+
+        <input type="text">
+
+      </div>
+
+    </div>
+
+  </div>
+  <div id='scene_1'>
+    <div id="menu_space"></div>
+    <div class="title">
+
+      <h1> Find the  film locations in San Francisco </h1>
+
+
+    </div>
+
+    <div class="popular_locations">
+
+      <div class="popular_title">
+        <h2>Popular locations </h2>
+
+      </div>
+
+      <div class="popular_container">
+          
+        <div id="city" onclick="location.href=`https://en.wikipedia.org/wiki/San_Francisco_City_Hall` ">
+       
+         
+          <h3>City Hall</h3>
+        </div>
+
+        <div id="golden" onclick="location.href=`https://en.wikipedia.org/wiki/Golden_Gate_Bridge` ">
+
+          
+          <h3>Golden Gate</h3>
+
+        </div>
+
+        <div id="Avenue" onclick="location.href=`https://google.com` " >
+
+          
+          <h3> Doubtfire House</h3>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow"onclick="location.href=`#table` " >
+      <img src='img/Vector 2.svg' alt='arrow'>
+    </div>
+  </div id='scene_1'>
+
+  <div  class="scene_2">
+    
+    <div class="">
+
+    </div>
+
+    <div id="table">
+      <div class="row" id='table_head'>
+        <div>Title</div>
+        <div>Year</div>
+        <div>Director</div>
+      </div>
+      <div class="row" >
+        <div class="table_name">Name 1</div>
+        <div class="table_year">2001</div>
+        <div class="table_director">Director 1</div>
+      </div>
+      <div class="row" >
+        <div class="table_name">Name 2</div>
+        <div class="table_year">2002</div>
+        <div class="table_director">Director 2</div>
+      </div>
+      <div class="row" >
+        <div class="table_name">Name 3</div>
+        <div class="table_year">2003</div>
+        <div class="table_director">Director 3</div>
+      </div>
+      <div class="row" >
+        <div class="table_name">Name 4</div>
+        <div class="table_year">2004</div>
+        <div class="table_director">Director 4</div>
+      </div>
+      <div class="row">
+        <div class="table_name">Name 5</div>
+        <div class="table_year">2005</div>
+        <div class="table_director">Director 5</div>
+      </div>
+      <div class="row">
+        <div class="table_name" >Name 6</div>
+        <div class="table_year">2006</div>
+        <div class="table_director">Director 6</div>
+      </div>
+      <div class="row">
+        <div class="table_name">Name 7</div>
+        <div class="table_year">2007</div>
+        <div class="table_director">Director 7</div>
+      </div>
+      <div class="row">
+        <div class="table_name">Name 8</div>
+        <div class="table_year">2008</div>
+        <div class="table_director" >Director 8</div>
+      </div>
+      <div class="row">
+        <div class="table_name">Name 9</div>
+        <div class="table_year">2009</div>
+        <div class="table_director">Director 9</div>
+      </div>
+    </div>
+
+
+    <div class="button">
+
+    </div>
+
+  </div>
+
+
+
+
+<footer>
+
+     <div class="footers">
+
+            <div class="home_footer">
+                <h3>Home footer</h3>
+            </div>
+
+            <div class="filmslist_footer">
+
+                  <h3>Films list</h3>
+            </div>
+
+            <div class="contactus_footer">
+              
+                 <h3>Contact Us</h3>
+            </div>
+
+
+
+     </div>
+
+</footer>
+
+
+
+</body>
+
+<script>
+requestMovies();
+fillTable();
+</script>
+</html>

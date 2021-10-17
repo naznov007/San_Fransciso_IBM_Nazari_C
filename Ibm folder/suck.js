@@ -26,14 +26,23 @@ function displayInfoCard(element) {
 };
 
 function addEventListeners() {
-    // Array.from(document.getElementById('table_rows_container').getElementsByClassName('row')).forEach((element) => {
-    //     Array.from(element.children).forEach((element_2) => {
-    //         console.log(element_2);
-    //         element_2.addEventListener(('click'), (e) => {
-    //             console.log(e.target);
-    //         })
-    //     })
-    // })
+    document.getElementById('search_bar').onsubmit = (e) => {
+        e.preventDefault();
+        const q = e.target.elements[0].value
+        if (q) {
+            const results = search('title', q);
+            updateSS('currentList', JSON.stringify(results));
+            updateSS('maxPages', Math.round(results.length / 8) != 0 ? Math.round(results.length / 8) : 1);
+            updateSS('currentPage', 0)
+            document.getElementById('scene_2').scrollIntoView({ behavior: 'smooth' })
+
+
+        } else {
+            updateSS('maxPages', Math.round(JSON.parse(sessionStorage.getItem('movies')).length / 8));
+            updateSS('currentList', sessionStorage.getItem('movies'));
+            updateSS('currentPage', 0)
+        }
+    }
     document.getElementById('navigation_back').addEventListener('click', (e) => {
         const currentPage = sessionStorage.getItem('currentPage');
         updateSS('currentPage', (currentPage * 1 - 1) >= 0 ? (currentPage * 1 - 1) : (currentPage * 1))
@@ -92,16 +101,17 @@ function requestMovies() {
             if (data.length > 1) {
 
                 var condensedList = condenseMovies(data);
-                condensedList.push(function(...args) {
-                    return this.filter((value) => {
-                        let condition = false;
-                        for (let i = 0; i < args.length / 2; i += 2) {
-                            condition = value[args[i]] == args[i + 1];
-                        }
-                        return condition;
-                    })
-                });
+                // condensedList.push(function(...args) {
+                //     return this.filter((value) => {
+                //         let condition = false;
+                //         for (let i = 0; i < args.length / 2; i += 2) {
+                //             condition = value[args[i]] == args[i + 1];
+                //         }
+                //         return condition;
+                //     })
+                // });
                 updateSS('movies', JSON.stringify(condensedList));
+                updateSS('currentList', JSON.stringify(condensedList));
                 updateSS('currentPage', 0);
                 updateSS('maxPages', Math.round(condensedList.length / 8));
                 Array.from(document.getElementById('navigation_page_number').children)[1].innerText = Math.round(condensedList.length / 8);
@@ -110,8 +120,9 @@ function requestMovies() {
             }
         });
     } else {
-        Array.from(document.getElementById('navigation_page_number').children)[0].innerText = sessionStorage.getItem('currentPage') * 1 + 1;
-        Array.from(document.getElementById('navigation_page_number').children)[1].innerText = sessionStorage.getItem('maxPages');;
+        updateSS('currentPage', sessionStorage.getItem('currentPage'));
+        updateSS('maxPages', sessionStorage.getItem('maxPages'));
+        updateSS('currentList', sessionStorage.getItem('movies'));
         fillTable()
     }
 }
@@ -138,7 +149,7 @@ function search(type, search_query) {
     switch (type) {
         case 'title':
             list.forEach(element => {
-                if (element.title.startsWith(search_query)) { results.push(element) }
+                if (element.title.toLowerCase().startsWith(search_query.toLowerCase())) { results.push(element) }
             });
             break;
         case 'director':
@@ -165,7 +176,8 @@ function search(type, search_query) {
 }
 
 function fillTable() {
-    const data = JSON.parse(sessionStorage.getItem('movies'));
+    //const data = JSON.parse(sessionStorage.getItem('movies'));
+    const data = JSON.parse(sessionStorage.getItem('currentList'));
     const currentPage = sessionStorage.getItem('currentPage');
     const table_rows_container = document.getElementById('table_rows_container');
     let table_rows = [];

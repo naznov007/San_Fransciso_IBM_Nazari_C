@@ -5,7 +5,8 @@
 }
 
 html,
-body {
+body,
+#scene_2 {
     overflow-x: hidden;
 }
 
@@ -412,6 +413,16 @@ a:link {
     grid-template-columns: 5% auto 5% 5%;
     border-radius: 119px;
     padding: 5vh;
+    animation: pop 0.1s ease-in-out;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0%, 0%);
+    }
+    100% {
+        transform: scale(100%, 100%);
+    }
 }
 
 #overlay>div>div.card_text {
@@ -472,33 +483,34 @@ a:link {
 
 footer {
     display: grid;
-    grid-template-rows: 5vh auto auto auto 5vh;
-    grid-template-columns: 5vh auto 50vw;
+    grid-template-rows: 5vh auto 5vh;
+    grid-template-columns: 5vh auto auto auto 5vh;
     color: white;
     font-style: normal;
     font-weight: 400;
     font-size: 4vh;
     text-align: center;
     background-color: black;
-    height: 20vh
+    height: 20vh;
+    align-items: center;
 }
 
 footer>div {
+    grid-row-end: 3;
+    grid-row-start: 2;
+}
+
+footer>div#footer_home {
     grid-column-start: 2;
     grid-column-end: 3;
 }
 
-footer>div#footer_home {
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-
 footer>div#footer_films_list {
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 
 footer>div#footer_contact_us {
-    grid-row-start: 4;
-    grid-row-end: 5;
+    grid-column-start: 4;
+    grid-column-end: 5;
 }

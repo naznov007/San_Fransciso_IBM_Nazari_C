@@ -1,14 +1,39 @@
+function createElement(type, options) {
+    var element = document.createElement(type);
+    element.classList.add(options.class ? options.class : '');
+    element.id = options.id ? options.id : '';
+    element.innerHTML = options.innerHTML ? options.innerHTML : '';
+    element.innerText = options.innerText ? options.innerText : '';
+    if (options.data) element.dataset[options.data.attribute] = options.data.value;
+    return element;
+}
+
 function updateSS(field, value) {
     sessionStorage.setItem(field, value);
     window.dispatchEvent(new CustomEvent('ss_update', { 'detail': { 'key': field, 'newValue': value } }));
 }
 
+function displayInfoCard(element) {
+    console.log(element);
+    document.getElementById('overlay').style.display = 'grid';
+    const { title, release_year, locations, fun_facts, production_company, director, writer, actor_1, actor_2, actor_3 } = JSON.parse(element.dataset.movieData);
+    console.log(JSON.parse(element.dataset.movieData))
+    document.getElementById('card_title').innerText = title;
+    Array.from(document.getElementById('card_production_company').children)[0].innerText = production_company;
+    Array.from(document.getElementById('card_release_year').children)[0].innerText = release_year;
+    Array.from(document.getElementById('card_director').children)[0].innerText = director;
+    document.getElementById('card_locations').innerHTML = locations.length >= 1 ? 'Locations: <div>' + locations + '</div>' : '';
+};
+
 function addEventListeners() {
-    Array.from(document.getElementById('table').children).slice(1).forEach((element) => {
-        element.addEventListener(('click'), (e) => {
-            document.getElementById('overlay').style.display = 'grid';
-        })
-    })
+    // Array.from(document.getElementById('table_rows_container').getElementsByClassName('row')).forEach((element) => {
+    //     Array.from(element.children).forEach((element_2) => {
+    //         console.log(element_2);
+    //         element_2.addEventListener(('click'), (e) => {
+    //             console.log(e.target);
+    //         })
+    //     })
+    // })
     document.getElementById('navigation_back').addEventListener('click', (e) => {
         const currentPage = sessionStorage.getItem('currentPage');
         updateSS('currentPage', (currentPage * 1 - 1) >= 0 ? (currentPage * 1 - 1) : (currentPage * 1))
@@ -142,29 +167,20 @@ function search(type, search_query) {
 function fillTable() {
     const data = JSON.parse(sessionStorage.getItem('movies'));
     const currentPage = sessionStorage.getItem('currentPage');
-    const table_rows = Array.from(document.getElementById('table').children);
-    table_rows.splice(0, 1);
-    if (table_rows.length * (currentPage * 1) < data.length) {
-        for (let i = table_rows.length * currentPage, k = 0; i < table_rows.length * (currentPage * 1 + 1); i++, k++) {
-            if (k < table_rows.length) {
-                table_rows[k].display = 'inline-grid';
-                const container = Array.from(table_rows[k].children);
-                container[0].innerText = data[i].title;
-                container[1].innerText = data[i].release_year;
-                container[2].innerText = data[i].director[0];
+    const table_rows_container = document.getElementById('table_rows_container');
+    let table_rows = [];
+    for (let i = 8 * currentPage, k = 0; k < 8; i++, k++) {
+        if (data[i]) {
+            const title = createElement('div', { 'class': 'table_name', 'innerText': data[i].title });
+            const ry = createElement('div', { 'class': 'table_year', 'innerText': data[i].release_year });
+            const director = createElement('div', { 'class': 'table_director', 'innerText': data[i].director[0] });
+            var row = createElement('div', { 'class': 'row', 'data': { 'attribute': 'movieData', 'value': JSON.stringify(data[i]) } });
+            row.replaceChildren(...[title, ry, director])
+            row.onclick = function() {
+                displayInfoCard(this);
             }
-        }
-    } else {
-        const remainingEntries = table_rows.length * (currentPage * 1) - data.length;
-        console.log(table_rows.length * (currentPage * 1), data.length, remainingEntries)
-        for (let i = 0; i < remainingEntries; i++) {
-            const container = Array.from(table_rows[i].children);
-            container[0].innerText = data[i].title;
-            container[1].innerText = data[i].release_year;
-            container[2].innerText = data[i].director[0];
-        }
-        for (let i = 0; i < table_rows.length - remainingEntries; i++) {
-            table_rows[table_rows.length - i].style.display = 'none';
+            table_rows.push(row);
         }
     }
+    table_rows_container.replaceChildren(...table_rows);
 }

@@ -260,6 +260,7 @@ a:link {
     height: 100vh;
     grid-template-columns: 5vh auto 10vh 5vh;
     border: 1px solid black;
+    overflow-y: hidden;
 }
 
 #menu_space_2 {
@@ -273,7 +274,9 @@ a:link {
 /*MOVIE LIST*/
 
 #table {
-    grid-template-rows: auto auto;
+    display: grid;
+    grid-template-rows: min-content auto;
+    grid-template-columns: 100%;
     grid-row-start: 2;
     grid-row-end: 3;
     text-align: center;
@@ -281,11 +284,29 @@ a:link {
     grid-column-end: 3;
     font-size: 4vh;
     font-weight: 400;
+    overflow-y: hidden;
 }
 
 #table>* {
     text-align: center;
     font-weight: 500;
+}
+
+#table>#table_head {
+    background-color: unset;
+    text-align: center;
+    font-size: 4vh;
+    border-collapse: collapse;
+}
+
+#table>#table_rows_container {
+    overflow-y: scroll;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: inline-grid;
+    grid-template-rows: auto auto auto auto auto auto auto auto;
 }
 
 .row {
@@ -294,16 +315,25 @@ a:link {
     margin-bottom: 2vh;
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 100%;
+    grid-template-rows: 25% auto 25%;
     justify-content: center;
+    align-content: center;
 }
 
-#table_head {
-    background-color: unset;
-    text-align: center;
-    font-size: 4vh;
-    text-align: center;
-    border-collapse: collapse;
+.row>* {
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+
+/*FILTER*/
+
+#filter_open_button {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    background-color: rosybrown;
 }
 
 
@@ -367,8 +397,8 @@ a:link {
     width: 100vw;
     z-index: 1;
     display: none;
-    grid-template-columns: 25% auto 25%;
-    grid-template-rows: 25% auto 25%;
+    grid-template-columns: 15% auto 15%;
+    grid-template-rows: 15% auto 15%;
 }
 
 #overlay>div {
@@ -378,19 +408,55 @@ a:link {
     grid-column-end: 3;
     background-color: white;
     display: grid;
-    grid-template-rows: 5% auto auto auto 5%;
+    grid-template-rows: 5% auto auto auto auto auto 5%;
     grid-template-columns: 5% auto 5% 5%;
+    border-radius: 119px;
+    padding: 5vh;
 }
 
-#title {
-    grid-row-start: 2;
-    grid-row-end: 3;
+#overlay>div>div.card_text {
     grid-column-start: 2;
     grid-column-end: 3;
-    background-color: royalblue;
+    font-weight: 500;
 }
 
-#overlay_card_button {
+#overlay>div>div.card_text>div {
+    display: inline;
+    font-weight: 400;
+}
+
+#card_title {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+    font-size: 4vh;
+}
+
+#card_production_company {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    font-size: 3vh;
+}
+
+#card_release_year {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    font-size: 3vh;
+}
+
+#card_director {
+    grid-row-start: 5;
+    grid-row-end: 6;
+    font-size: 3vh;
+}
+
+#card_locations {
+    grid-row-start: 6;
+    grid-row-end: 7;
+    font-size: 3vh;
+}
+
+#card_overlay_close_button {
     text-align: center;
     background-color: rosybrown;
     height: min-content;

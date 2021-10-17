@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="widdiv=device-widdiv, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="suck.js"></script>
     <title>FIFL</title>
@@ -44,7 +43,7 @@
 
             <div class='default_colors' id="search_bar">
 
-                <input type="text">
+                <input label='search bar' placeholder='Search movie title...' type="text">
 
             </div>
 
@@ -104,54 +103,55 @@
                 <div>Year</div>
                 <div>Director</div>
             </div>
-            <div class="row">
-                <div class="table_name">Name 1</div>
-                <div class="table_year">2001</div>
-                <div class="table_director">Director 1</div>
-            </div>
-            <div class="row">
-                <div class="table_name">Name 2</div>
-                <div class="table_year">2002</div>
-                <div class="table_director">Director 2</div>
-            </div>
-            <div class="row">
-                <div class="table_name">Name 3</div>
-                <div class="table_year">2003</div>
-                <div class="table_director">Director 3</div>
-            </div>
-            <div class="row">
-                <div class="table_name">Name 4</div>
-                <div class="table_year">2004</div>
-                <div class="table_director">Director 4</div>
-            </div>
-            <div class="row">
-                <div class="table_name">Name 5</div>
-                <div class="table_year">2005</div>
-                <div class="table_director">Director 5</div>
-            </div>
-            <div class="row">
-                <div class="table_name">Name 6</div>
-                <div class="table_year">2006</div>
-                <div class="table_director">Director 6</div>
-            </div>
-            <div class="row">
-                <div class="table_name">Name 7</div>
-                <div class="table_year">2007</div>
-                <div class="table_director">Director 7</div>
-            </div>
-            <div class="row">
-                <div class="table_name">Name 8</div>
-                <div class="table_year">2008</div>
-                <div class="table_director">Director 8</div>
-            </div>
-            <div class="row">
-                <div class="table_name">Name 9</div>
-                <div class="table_year">2009</div>
-                <div class="table_director">Director 9</div>
+            <div id='table_rows_container'>
+                <div class="row">
+                    <div class="table_name">Name 1</div>
+                    <div class="table_year">2001</div>
+                    <div class="table_director">Director 1</div>
+                </div>
+                <div class="row">
+                    <div class="table_name">Name 2</div>
+                    <div class="table_year">2002</div>
+                    <div class="table_director">Director 2</div>
+                </div>
+                <div class="row">
+                    <div class="table_name">Name 3</div>
+                    <div class="table_year">2003</div>
+                    <div class="table_director">Director 3</div>
+                </div>
+                <div class="row">
+                    <div class="table_name">Name 4</div>
+                    <div class="table_year">2004</div>
+                    <div class="table_director">Director 4</div>
+                </div>
+                <div class="row">
+                    <div class="table_name">Name 5</div>
+                    <div class="table_year">2005</div>
+                    <div class="table_director">Director 5</div>
+                </div>
+                <div class="row">
+                    <div class="table_name">Name 6</div>
+                    <div class="table_year">2006</div>
+                    <div class="table_director">Director 6</div>
+                </div>
+                <div class="row">
+                    <div class="table_name">Name 7</div>
+                    <div class="table_year">2007</div>
+                    <div class="table_director">Director 7</div>
+                </div>
+                <div class="row">
+                    <div class="table_name">Name 8</div>
+                    <div class="table_year">2008</div>
+                    <div class="table_director">Director 8</div>
+                </div>
+                <div class="row">
+                    <div class="table_name">Name 9</div>
+                    <div class="table_year">2009</div>
+                    <div class="table_director">Director 9</div>
+                </div>
             </div>
         </div>
-
-
+        <div id='filter_open_button'>FILTER</div>
         <div id='navigation_button_container'>
             <div id='navigation_back'>
                 <</div>
@@ -164,11 +164,21 @@
 
             <div id='overlay'>
                 <div id='details_card'>
-                    <div id='title'>Title:
-                        <div>TITLE</div>
+                    <div class='card_text' id='card_title'>Title
                     </div>
-
-                    <div id='overlay_card_button'>X</div>
+                    <div class='card_text' id='card_production_company'>Producer:
+                        <div>_</div>
+                    </div>
+                    <div class='card_text' id='card_release_year'>Release Year:
+                        <div>_</div>
+                    </div>
+                    <div class='card_text' id='card_director'>Director:
+                        <div>_</div>
+                    </div>
+                    <div class='card_text' id='card_locations'>Locations:
+                        <div>_</div>
+                    </div>
+                    <div id='card_overlay_close_button'>X</div>
                 </div>
             </div>
         </div>

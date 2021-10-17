@@ -26,8 +26,12 @@ function displayInfoCard(element) {
 };
 
 function addEventListeners() {
+    Array.from(document.getElementsByTagName('form')).forEach((form)=>{
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault();
+        })
+    });
     document.getElementById('search_bar').onsubmit = (e) => {
-        e.preventDefault();
         const q = e.target.elements[0].value
         if (q) {
             const results = search('title', q);
@@ -43,6 +47,50 @@ function addEventListeners() {
             updateSS('currentPage', 0)
         }
     }
+    document.getElementById('filter_open_button').addEventListener('click',(e)=>{
+        document.getElementById('filters_overlay').style.display = 'grid';
+        document.getElementById('filters_card').classList.remove('hide');
+        document.getElementById('filters_card').classList.add('show');
+    })
+    document.getElementById('filters_close_button').addEventListener('click',(e)=>{
+        document.getElementById('filters_card').classList.remove('show');
+        document.getElementById('filters_card').classList.add('hide');
+    })
+    document.getElementById('filters_card').onanimationend = ev=>{
+        if(ev.animationName=='slideRight'){
+            document.getElementById('filters_overlay').style.display='none'
+        }
+    }
+    document.getElementById('filters_apply_button').addEventListener('click',(e)=>{
+        const releaseYearLowerBoundry = document.getElementById('filter_year_from').value;
+        const releaseYearUpperBoundry = document.getElementById('filter_year_to').value;
+        const director = document.getElementById('filter_director').value ? document.getElementById('filter_director').value : undefined;
+        const pc = document.getElementById('filter_production_company').value ? document.getElementById('filter_production_company').value : undefined;
+        console.log(director,pc);
+        var list = search('release_year',{lm:releaseYearLowerBoundry,um:releaseYearUpperBoundry});
+        //filters by exact match, really bad for end-user
+        function filter(list,...args) {
+            return list.filter((value) => {
+                let condition = 0;
+                for (let i = 0; i < 1+args.length / 2; i += 2) {
+                    condition += args[i+1] != undefined ? (value[args[i]] == args[i + 1] ? 1 : 0 )  : 1;
+                }
+                return condition == args.length/2;
+            })}
+        var result = filter(list,'director',director,'production_company',pc);
+        updateSS('currentList',JSON.stringify(result));
+        updateSS('maxPages',Math.round(result.length/8) != 0 ? Math.round(result.length/8) : 1)
+        updateSS('currentPage',0)
+    });
+    document.getElementById('filters_reset_button').addEventListener('click',(e)=>{
+        document.getElementById('filter_year_from').value = 1900;
+        document.getElementById('filter_year_to').value = new Date().getFullYear();
+        document.getElementById('filter_director').value = '';
+        document.getElementById('filter_production_company').value = '';
+        updateSS('maxPages', Math.round(JSON.parse(sessionStorage.getItem('movies')).length / 8));
+            updateSS('currentList', sessionStorage.getItem('movies'));
+            updateSS('currentPage', 0)
+    });
     document.getElementById('navigation_back').addEventListener('click', (e) => {
         const currentPage = sessionStorage.getItem('currentPage');
         updateSS('currentPage', (currentPage * 1 - 1) >= 0 ? (currentPage * 1 - 1) : (currentPage * 1))
@@ -101,15 +149,6 @@ function requestMovies() {
             if (data.length > 1) {
 
                 var condensedList = condenseMovies(data);
-                // condensedList.push(function(...args) {
-                //     return this.filter((value) => {
-                //         let condition = false;
-                //         for (let i = 0; i < args.length / 2; i += 2) {
-                //             condition = value[args[i]] == args[i + 1];
-                //         }
-                //         return condition;
-                //     })
-                // });
                 updateSS('movies', JSON.stringify(condensedList));
                 updateSS('currentList', JSON.stringify(condensedList));
                 updateSS('currentPage', 0);

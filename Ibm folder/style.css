@@ -62,6 +62,7 @@ body,
     animation: text_w2b .5s ease-out;
 }
 
+/*NAVBAR*/
 .sticky_navbar {
     grid-row-start: 1;
     grid-row-end: 2;
@@ -327,17 +328,164 @@ a:link {
 }
 
 
-/*FILTER*/
+/*FILTERS*/
 
 #filter_open_button {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: rosybrown;
+    height: min-content;
 }
 
+#filters_overlay{
+    background-color: rgba(255, 255, 255, 50%);
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    display: none;
+    grid-template-columns: 70% auto;
+    grid-template-rows: 100%;
+}
+#filters_overlay>#filters_card{
+    display: grid;
+    border: 1px solid black;
+    position: relative;
+    grid-row-start: 1;
+    grid-row-end:2 ;
+    grid-column-start: 2;
+    grid-column-end:3 ;
+    grid-template-rows: 5% min-content min-content min-content min-content 5% 5%;
+    grid-template-columns: 5% auto 5%;
+    background-color: rgb(255, 255, 255);
+    top: 0;
+    right:-100%;
+}
+#filters_overlay>#filters_card.show{
+    right: 0%;
+    animation: slideFromRight 0.5s;
+}
+#filters_overlay>#filters_card.hide{
+    right: -100%;
+    animation-iteration-count: 0;
+    animation: slideRight 0.5s;
+}
+@keyframes slideFromRight {
+    0%{right:-100%}
+    100%{right:0%}
+}
+@keyframes slideRight {
+    0%{right:0%}
+    100%{right:-100%}
+}
+#filters_card>#filters_close_button{
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: end;
+    padding-right: 5vh;
+}
+#filters_card>div{
+margin-top: 1vh;
+}
+#filters_card>div.collapsible_list{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    border-bottom: 1px solid black;
+}
+#filters_card>#filters_year_container{
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+#filters_card>#filters_director_container{
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+#filters_card>#filters_production_company_container{
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+.collapsible_list{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+}
+.collapsible_list>.collapsible_list_header{
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: auto min-content;
+}
+.collapsible_list_header_title{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.collapsible_list_header_arrow{
+    grid-column-start: 2;
+    grid-column-end:3;
+}
 
+.collapsible_list>.collapsible_list_content{
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+}
+.collapsible_list>.collapsible_list_content>form{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto;
+}
+.collapsible_list>.collapsible_list_content>form>input[id='filter_year_from']{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.collapsible_list>.collapsible_list_content>form>input[id='filter_year_to']{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.collapsible_list>.collapsible_list_content>form>input{
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+.collapsible_list>.collapsible_list_content>form>input#filter_director{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.collapsible_list>.collapsible_list_content>form>input#filter_production_company{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#filters_apply_container{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    display: grid;
+    grid-template-rows: 25% auto 25%;
+    grid-template-columns: 50% 50%;
+
+}
+#filters_apply_container>#filters_apply_button{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+    background-color: rgb(211, 211, 211);
+}
+#filters_apply_container>#filters_reset_button{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+    background-color: rgb(255, 181, 181);
+
+}
 /*NAVIGATION*/
 
 #navigation_button_container {

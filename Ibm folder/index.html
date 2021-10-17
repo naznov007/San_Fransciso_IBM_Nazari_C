@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="suck.js"></script>
+    <script type="text/javascript" src="index.js"></script>
     <title>FIFL</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,7 +161,51 @@
                     </div>
                     <div id='navigation_forward'>></div>
             </div>
-
+            <div id='filters_overlay'>
+                <div id='filters_card'>
+                    <div id="filters_close_button">X</div>
+                    <div class='collapsible_list' id="filters_year_container">
+                        <div class='collapsible_list_header'>
+                            <div class='collapsible_list_header_title'><div>YEAR</div></div>
+                    </div>
+                    <div class='collapsible_list_content'>
+                        <form>
+                            <input id='filter_year_from' placeholder='From' min="1900" max="2021" value = '1900' type="number">
+                            <input id='filter_year_to' placeholder='To' min="1900" value='2021' max="2021" type="number">
+                        </form>
+                    </div></div>
+                    <div class='collapsible_list' id="filters_director_container">
+                        <div class='collapsible_list_header'>
+                            <div class='collapsible_list_header_title'>
+                                <div>DIRECTOR</div>
+                            </div>
+                        </div>
+                        <div class='collapsible_list_content'>
+                            <form>
+                                <label for='filter_director'></label>
+                                <input id='filter_director' placeholder="Director name" type="text">
+                            </form>
+                        </div>
+                    </div>
+                    <div class='collapsible_list' id="filters_production_company_container">
+                        <div class='collapsible_list_header'>
+                            <div class='collapsible_list_header_title'>
+                                <div>PRODUCTION COMPANY</div>
+                            </div>
+                        </div>
+                        <div class='collapsible_list_content'>
+                            <form>
+                                <label for='filter_production_company'></label>
+                                <input id='filter_production_company' placeholder="Company name" type="text">
+                            </form>
+                        </div>
+                    </div>
+                    <div id='filters_apply_container'>
+                        <div id='filters_apply_button'>APPLY</div>
+                        <div id='filters_reset_button'>RESET</div>
+                    </div>
+                </div>
+            </div>
             <div id='overlay'>
                 <div id='details_card'>
                     <div class='card_text' id='card_title'>Title
@@ -182,7 +226,7 @@
                 </div>
             </div>
         </div>
-
+</div>  
 
 
 
